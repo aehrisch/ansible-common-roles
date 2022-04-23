@@ -1,0 +1,4 @@
+---
+# defaults file for apt-upgrades
+container_name: unifi-controller
+unifi_user: unifi

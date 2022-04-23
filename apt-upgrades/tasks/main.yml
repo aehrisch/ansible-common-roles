@@ -1,0 +1,29 @@
+---
+# tasks file for apt-upgrades
+
+- name: install
+  block:
+    - name: install-package
+      apt:
+        name: 
+          - unattended-upgrades
+          - apt-listchanges
+        state: latest
+        update_cache: yes
+
+    - name: config-periodic
+      copy:
+        src: 10periodic
+        dest: /etc/apt/apt.conf.d/10periodic
+        owner: root
+        group: root
+        mode: '0640'
+
+    - name: config-upgrades
+      copy:
+        src: 50unattended-upgrades
+        dest: /etc/apt/apt.conf.d/50unattended-upgrades
+        owner: root
+        group: root
+        mode: '0640'
+  become: yes
